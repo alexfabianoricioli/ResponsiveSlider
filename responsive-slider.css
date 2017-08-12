@@ -1,0 +1,485 @@
+/*============================= Plugin Slider - INICIO =============================*/
+.carousel-container,
+.carousel-wrapper,
+.carousel-list,
+.carousel-item {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.carousel-full {
+  width: calc(100vw - 6.5rem);
+  margin-left: 50%;
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%);
+}
+.carousel-container {
+  position: relative;
+  margin: 0 auto 5px;
+  border: 1px solid #DDD;
+}
+.carousel-container:active {
+  cursor: move;
+}
+.carousel .carousel-container {
+  border: none;
+  border-top: 1px solid #DDD;
+}
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  width: calc(100% + 4px);
+  margin: 0 -2px;
+}
+.carousel-list:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.carousel-list {
+  position: relative;
+  left: 0;
+  list-style: none;
+  /*-webkit-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  -moz-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: left .8s cubic-bezier(0.77, 0, 0.175, 1);*/
+
+  display: -webkit-box;
+  display:    -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display:         flex;
+  display: flex;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+  -ms-flex-wrap: nowrap;
+}
+.carousel-list .carousel-item {
+  border-right: 1px solid #ddd;
+  overflow: hidden;
+  position: relative;
+}
+.carousel-item .productbox {
+  height: 100%;
+  border: none;
+}
+.slide-manufactured .carousel-item {
+  padding: 15px;
+}
+.products_slider.carousel .carousel-item {
+  border-right: none!important;
+}
+
+/* Controles - INICIO */
+.carousel-container .indicators {
+  cursor: pointer;
+}
+.carousel-container .indicators .indicators-content {
+  height: .25rem;
+  background-color: #DDD;
+  transition: .4s linear;
+}
+.carousel-container .indicators.active .indicators-content {
+  background-color: #AAA;
+}
+
+.carousel-container .time-line {
+  background-color: #DDD;
+  width: 100%;
+}
+.carousel-container .time-line .time-line-current-time {
+  background-color: #DDD;
+  height: .1rem;
+}
+
+.carousel-container .control {
+  border-radius: 5px;
+  padding: 12px 14px;
+  background-color: #EEE;
+  font-weight: 900;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  opacity: 0.8;
+  -webkit-transition: .3s linear;
+  -moz-transition: .3s linear;
+  -o-transition: .3s linear;
+  transition: .3s linear;
+}
+.carousel-container .control:hover {
+  opacity: 1;
+}
+.control-inside,
+.control-outside,
+.control-outside-hover {
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+     -moz-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+.carousel-container .control-inside {
+  border-radius: 0;
+  padding: 16px 12.5px;
+  font-size: 11px;
+}
+.control-outside {
+  padding: 5.5px 10.9px!important;
+}
+.carousel-container .control.control-outside-hover {
+  background: none;
+  color: #000;
+  font-size: 1.5rem;
+  opacity: 0;
+}
+.carousel-container .control.control-outside-hover:hover {
+  opacity: 1;
+}
+.carousel-container .control-inside.prev {
+  left: 25px;
+}
+.carousel-container .control-inside.next {
+  right: 25px;
+}
+.carousel-container .control-outside.prev {
+  left: -35px;
+}
+.carousel-container .control-outside.next {
+  right: -35px;
+}
+
+.carousel-container .control-outside-hover.prev {
+  left: -40px;
+}
+.carousel-container .control-outside-hover.next {
+  right: -40px;
+}
+.carousel-container:hover .control-outside-hover.prev {
+  left: -45px;
+  opacity: 1;
+}
+.carousel-container:hover .control-outside-hover.next {
+  right: -45px;
+  opacity: 1;
+}
+
+.control-top {
+  top: -45px;
+  padding: 0!important;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+.carousel-container .control-top.prev {
+  right: 45px;
+}
+.carousel-container .control-top.next {
+  right: 0;
+}
+/* Controles - FINAL */
+.carousel-item > img, .carousel-item > a > img {
+  width: 100%;
+}
+.carousel .carousel-item {
+  text-align: center;
+}
+.carousel .carousel-item > img,
+.carousel .carousel-item > a > img {
+  width: auto;
+  max-width: 100%;
+}
+.img-full-responsive .carousel-item > img,
+.img-full-responsive .carousel-item > a > img {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  min-width: 1920px;
+  -webkit-transform: translate(-50%,0);
+     -moz-transform: translate(-50%,0);
+      -ms-transform: translate(-50%,0);
+          transform: translate(-50%,0);
+}
+.slide-image,
+.slide-image .carousel-item {
+  border: none;
+}
+.slide-image .control {
+  opacity: 0;
+}
+.slide-image:hover .control {
+  opacity: 1;
+}
+/*PRODUTO*/
+.thumb {
+  border: 1px solid #EEEEEE;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.more-views .carousel-item {
+  padding: 4px;
+  border-right: none;
+}
+.more-views.carousel-container{
+  border: none;
+}
+/*============================= Plugin Slider - FINAL =============================*/
+
+/*================================== INICIO - Banner html =================================*/
+.banner-html * {
+  box-sizing: border-box!important;
+}
+.banner-html .container-banner-html {
+  height: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.banner-html .banner-product-image,
+.banner-html .banner-product-details {
+  text-align: center;
+  float: left;
+  position: relative;
+  height: 100%;
+}
+.banner-html .banner-product-details {
+  width: 50%;
+}
+.banner-html .banner-product-image {
+  width: 48%;
+  margin-right: 2%;
+}
+.banner-html .banner-product-image img{
+  max-height: 100%;
+  width: auto;
+  max-width: 60%;
+  max-height: 96%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.banner-html .banner-product-details .prod_image_detail {
+  width: 100%!important;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0,-50%);
+     -moz-transform: translate(0,-50%);
+      -ms-transform: translate(0,-50%);
+          transform: translate(0,-50%);
+}
+.banner-html .banner-product-details .price-box,
+.banner-html .banner-product-details .actions {
+  float: left;
+  width: 49%!important;
+}
+.banner-html .banner-product-details .price-box{ margin-right: 2%; }
+.banner-html .banner-product-details .banner-html-product-title {
+  display: block;
+  font-size: 2.5vw;
+  line-height: 3.5vw;
+  width: 80%;
+  max-width: 90%;
+  margin: 0 auto;
+  word-wrap: break-word;
+}
+.banner-html .banner-product-details .banner-html-product-title:hover {
+  -webkit-filter: brightness(85%);
+          filter: brightness(85%);
+}
+.carousel-item.banner-html .banner-product-image {
+  position: relative;
+}
+.banner-html-price {
+  font-size: 2.6vw;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  -webkit-filter: brightness(75%);
+          filter: brightness(75%);
+}
+.banner-html > img.img-principal,
+.banner-html > a > img.img-principal {
+  display: block;
+}
+.banner-html .normal-price {
+  text-decoration: line-through;
+}
+.banner-html .normal-price-container {
+  font-size: 70%;
+  display: block;
+  -webkit-filter: brightness(60%);
+          filter: brightness(60%);
+}
+.banner-html .prefix-price{
+  font-size: 80%;
+}
+.banner-html .sale-off-label {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+  font-weight: bolder;
+  text-align: center;
+  position: absolute;
+  top: 15px;
+  background: #DD4B39;
+  color: #FFF;
+  z-index: 1;
+}
+
+
+.slide-home .carousel-item .img-principal {
+  display: none;
+}
+.img-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  max-width: 20px!important;
+  max-height: 20px!important;
+  min-width: 20px!important;
+  min-height: 20px!important;
+  width: 20px!important;
+  height: 20px!important;
+}
+.carousel-item.banner-html .banner-product-image {
+  position: relative;
+}
+.btn-banner.btn-default:hover::after {
+  visibility: hidden;
+}
+.btn-banner span {
+  font-size: 1.2vw;
+}
+/*============================ FINAL - Banner html ===========================*/
+/*============================= INICIO - Modelo-1 ============================*/
+.banner-html.model-1 .sale-off-label {
+  right: -48px!important;
+}
+.banner-html.model-1 .banner-product-image:before,/* background da imagem do produto */
+.banner-html.model-1 .banner-product-details:before,/* background das informacoes do produto */
+.banner-html.model-1 .banner-product-image:after {/* faixa a esqueda da imagem do produto */
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: skewX(-32deg) translate(-50%,0);
+     -moz-transform: skewX(-32deg) translate(-50%,0);
+      -ms-transform: skewX(-32deg) translate(-50%,0);
+          transform: skewX(-32deg) translate(-50%,0);
+}
+.banner-html.model-1 .banner-product-image:before {/* background da imagem do produto */
+  background: #FFF;
+  height: 100%;
+  top: 0;
+  width: 100%;
+}
+.banner-html.model-1 .banner-product-details:before,/* background das informacoes do produto */
+.banner-html.model-1 .banner-product-image:after {/* faixa a esqueda da imagem do produto */
+  height: 100%;
+  width: 108%;
+  top: 0;
+}
+.banner-html.model-1 .banner-product-image:after {/* faixa a esqueda da imagem do produto */
+  left: -55%;
+  background-image: url(../image/padrao-bola.png);
+}
+.carousel-item.banner-html.model-1 {
+  background-image: url(../image/padrao-bola.png);
+}
+.banner-html.model-1 .btn-banner {
+  color: #FFF;
+}
+/*============================= FINAL - Modelo-1 =============================*/
+/*============================= INICIO - Modelo-2 ============================*/
+.banner-html.model-2 .sale-off-label {
+  right: 15px!important;
+}
+.carousel-item.banner-html.model-2 {
+  background-image: url(../image/padrao-quadriculado.png);
+}
+.banner-html.model-2 .banner-product-image:before {
+  content: "";
+  display: block;
+  height: 52.6vw;
+  width: 52.6vw;
+  max-width: 600px;
+  max-height: 600px;
+  top: 50%;
+  left: 58%;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+     -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #FFF;
+}
+.banner-html.model-2 .banner-product-image img {
+  left: 58%;
+}
+/*============================= FINAL - Modelo-2 =============================*/
+/*============================= INICIO - Modelo-3 ============================*/
+.banner-html.model-3 .banner-product-details .banner-html-product-title {
+  margin-bottom: 15px;
+}
+.banner-html.model-3 .sale-off-label {
+  right: 15px!important;
+}
+.banner-html.model-3 .banner-product-image {
+  width: 50%;
+  margin-right: 0;
+}
+.banner-html.model-3 .banner-product-image:before {/* background da imagem do produto */
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: -100%;
+}
+.banner-html.model-3.carousel-item {
+  border-top: 2px solid #FFF;
+}
+.banner-html.model-3 .banner-html-price {
+  -webkit-filter: brightness(100%);
+          filter: brightness(100%);
+}
+/*============================= FINAL - Modelo-3 =============================*/
+
+@media screen and (min-width:1140px) {
+  .banner-html .banner-product-details .price-box{ margin-right: 2%; }
+  .banner-html .banner-product-details .banner-html-product-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .banner-html-price {
+    font-size: 50px;
+  }
+  .btn-banner span {
+    font-size: 20px;
+  }
+}
