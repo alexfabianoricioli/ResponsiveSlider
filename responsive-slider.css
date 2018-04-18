@@ -35,6 +35,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+}
+.slide-home .carousel-wrapper {
   width: calc(100% + 4px);
   margin: 0 -2px;
 }
@@ -44,6 +46,8 @@
   clear: both;
 }
 .carousel-list {
+  width: 100%;
+
   position: relative;
   left: 0;
   list-style: none;
@@ -75,6 +79,8 @@
   border-right: 1px solid #ddd;
   overflow: hidden;
   position: relative;
+  
+  min-width: 238px;/* não retirar */
 }
 .carousel-item .productbox {
   height: 100%;
@@ -112,7 +118,6 @@
 .carousel-container .control {
   border-radius: 5px;
   padding: 12px 14px;
-  background-color: #EEE;
   font-weight: 900;
   color: #000;
   text-align: center;
@@ -140,15 +145,17 @@
 .carousel-container .control-inside {
   border-radius: 0;
   padding: 16px 12.5px;
-  font-size: 11px;
+  font-size: 1.5rem;
 }
-.control-outside {
-  padding: 5.5px 10.9px!important;
+.carousel-container .control-outside {
+  background: none;
+  padding: 12px;
+  font-size: 1.5rem;
 }
 .carousel-container .control.control-outside-hover {
   background: none;
   color: #000;
-  font-size: 1.5rem;
+  font-size: 2rem;
   opacity: 0;
 }
 .carousel-container .control.control-outside-hover:hover {
@@ -348,7 +355,9 @@
   z-index: 1;
 }
 
-
+.slide-home .control-inside {
+  font-size: 1rem;
+}
 .slide-home .carousel-item .img-principal {
   display: none;
 }
