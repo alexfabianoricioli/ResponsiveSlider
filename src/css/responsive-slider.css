@@ -11,6 +11,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.carousel-inner {
+  /* esconde a faixa de um pixel da próxima imagem que aparece no canto quando o numero de imagens é impar */
+  overflow: hidden;
+}
 .carousel-full {
   width: calc(100vw - 6.5rem);
   margin-left: 50%;
@@ -79,7 +83,7 @@
   border-right: 1px solid #ddd;
   overflow: hidden;
   position: relative;
-  
+
   min-width: 238px;/* não retirar */
 }
 .carousel-item .productbox {
@@ -94,8 +98,22 @@
 }
 
 /* Controles - INICIO */
+.carousel-container .indicators-container {
+  display: flex;
+
+  margin: 0 -.1rem;
+}
 .carousel-container .indicators {
   cursor: pointer;
+  padding: .2rem .1rem;
+
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  max-width: 100%;
 }
 .carousel-container .indicators .indicators-content {
   height: .25rem;
@@ -114,6 +132,10 @@
   background-color: #DDD;
   height: .1rem;
 }
+.carousel-container .indicators.active .time-line-current-time {
+  background-color: #000;
+}
+
 
 .carousel-container .control {
   border-radius: 5px;
@@ -130,6 +152,8 @@
   -moz-transition: .3s linear;
   -o-transition: .3s linear;
   transition: .3s linear;
+
+  background: #DDD;
 }
 .carousel-container .control:hover {
   opacity: 1;

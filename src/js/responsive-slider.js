@@ -8,7 +8,7 @@
             itemsToShow: 'auto',// integer or "auto"
             controlPosition: 'top',// top / inside / outside / outside-hover
             sliderImage: false,// center / full / responsive / false
-            resposive: false,
+            responsive: false,
             ajaxLoading: false,
             full: false,
             minWidthItems: 238,
@@ -71,7 +71,7 @@
               }
 
               //muda a quantidade de itens visiveis de acordo com a tela
-              if (settings.resposive) {
+              if (settings.responsive) {
                 visibleReal = Math.floor($this.width() / settings.minWidthItems);
                 visibleReal = (visibleReal > 0) ? visibleReal : 1;
               }
@@ -374,10 +374,10 @@
             }
 //================================= autoScroll e hoverPause - FINAL =================================//
 //============================ drag swipe Slide - INICIO ===========================//
-            $this.disableSelection();
-            $wrapper.disableSelection();
-            $slider.disableSelection();
-            $items.disableSelection();
+            // $this.disableSelection();
+            // $wrapper.disableSelection();
+            // $slider.disableSelection();
+            // $items.disableSelection();
 
             var myElement = $(this);
             var options = {
