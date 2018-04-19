@@ -345,7 +345,15 @@
                 $slider.filter(':not(:animated)').animate({"left": (page-1) * -(sliderWidth/pages) + "%"}, 600);
 
                 $('.indicators', $this).removeClass('active');
-                $('.indicators', $this).eq(page-1).addClass('active');
+                if (settings.scrollInfinity) {
+                  if (page - 2 <= pageLimit - 3) {
+                    $('.indicators', $this).eq(page-2).addClass('active');
+                  } else {
+                    $('.indicators', $this).eq(0).addClass('active');
+                  }
+                } else {
+                  $('.indicators', $this).eq(page-1).addClass('active');
+                }
                 if (varMouseOut && pages > 1) {
                   $('.active .time-line-current-time', $this).stop(true, true).css({width: '0%'}).animate({width: '100%'}, settings.autoScrollTime);
                 }
