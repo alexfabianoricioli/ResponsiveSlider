@@ -1,8 +1,5 @@
 /*============================= Plugin Slider - INICIO =============================*/
-.carousel-container,
-.carousel-wrapper,
-.carousel-list,
-.carousel-item {
+.carousel-container * {
   margin: 0;
   padding: 0;
   outline: 0;
