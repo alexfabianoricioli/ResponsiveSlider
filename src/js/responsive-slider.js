@@ -4,6 +4,7 @@
             autoScroll: false,
             autoScrollTime: 6000,
             typeScroll: 'block',// single / block
+            scrollInfinity: false,
             hoverPause: false,
             itemsToShow: 'auto',// integer or "auto"
             controlPosition: 'top',// top / inside / outside / outside-hover
@@ -116,8 +117,14 @@
               $slider.css({'width': sliderWidth+"%"});
               $items.css({'width': itemsWidth+"%"});
 
-              //vai para a pagina corrente (importante para manter o produto em exibicao no responsivo)
-              goTo(1, false);
+              // ??? vai para a pagina corrente (importante para manter o produto em exibicao no responsivo)
+              if (settings.scrollInfinity) {
+                // ignora a primeira pagina que foi clonada do final e posiciona na segunda
+                goTo(2, false);
+              } else {
+                // posiciona o slider na primeira pagina
+                goTo(1, false);
+              }
             }
 
             //Reseta a altura dos itens antes de recalcular
@@ -249,6 +256,28 @@
               goTo(currentPage + 1);
             });
 
+            //clona a pagina inicial depois da final e a final antes da inicial para o efeito de scroll continuo
+            //OBS: Apenas se houver itens do que a visualização
+            if (settings.scrollInfinity && $items.length > visible) {
+              $items.filter(':last').after($items.slice(0, visible).clone());
+              $items.filter(':first').before($items.slice(-visible).clone());
+              //recalcula as larguras e paginas com o numero de items aspos as clonagens
+              $items = $('.carousel-item', $slider);
+              calcula_larguras();
+
+              //define a página corrente como a pagina que tem o primeiro item (pulando o final que foi clonado no inicio)
+              currentPage = 2;
+              // $slider.css({"left": (currentPage - 1) * -(sliderWidth/pages) + "%"});
+
+              //define a página corrente como a pagina que tem o primeiro item (pulando o final que foi clonado no inicio)
+              if (settings.typeScroll == 'single') {
+                currentPage = visible + 1;
+              }
+            }
+
+            //posiciona a lista na primeira pagina (pulando o final que foi clonado no inicio) e seta como pagina corrente
+            $slider.css({"left": (currentPage - 1) * -(sliderWidth/pages) + "%"});
+
             function goTo(page, get) {
 
               if ( typeof get == 'undefined' ) {
@@ -270,13 +299,38 @@
                   }
                 }
 
-                if (page > pageLimit && dir == 1) {
-                    page = 1;
-                } else if (page == 0 && dir == -1) {
-                    page = pageLimit;
+                if (settings.scrollInfinity) {
+
+                  if (settings.typeScroll == 'block') {
+                    if (page == pageLimit && dir == 1) {
+                      page = 2;
+                      $slider.css({"left":"0"});
+                    } else if (page == 0 && dir == -1) {
+                      page = pageLimit - 2;
+                      $slider.css({"left": (page) * -(sliderWidth/pages) + "%"});
+                    }
+                  } else if (settings.typeScroll == 'single') {
+                    if (page > pageLimit && dir == 1) {
+                      page = visible + 2;
+                      $slider.css({"left": (page-2) * -(sliderWidth/pages) + "%"});
+                    } else if (page == 0 && dir == -1) {
+                      page = pageLimit - visible - 1;
+                      $slider.css({"left": (page) * -(sliderWidth/pages) + "%"});
+                    }
+                  } else {
+                    alert('Um valor definido para "typeScroll" é inválido');
+                  }
+                } else {
+                  if (page > pageLimit && dir == 1) {
+                      page = 1;
+                  } else if (page == 0 && dir == -1) {
+                      page = pageLimit;
+                  }
                 }
 
                 currentPage = page;
+
+                console.log(page);
 
                 if ($this.hasClass('slide-home')) {
                   carrega_imagem_banner_principal(page);
@@ -341,7 +395,7 @@
                 $('.control', $this).remove();
               }
 
-              $wrapper.after('<a href="#" class="control prev hidden-sm-down"><i class="fa fa-angle-left"></i></a><a href="#" class="control next hidden-sm-down"><i class="fa fa-angle-right"></i></a>');
+              $wrapper.after('<a href="#" class="control prev hidden-sm-down"><i class="fa fa-angle-left"><</i></a><a href="#" class="control next hidden-sm-down"><i class="fa fa-angle-right">></i></a>');
 
               controlPositioning();
               addContollsEvents();
